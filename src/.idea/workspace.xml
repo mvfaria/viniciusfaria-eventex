@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="746a06e4-8ef8-41d2-9ebe-f6bae07ea5f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/subscriptions/models.py" afterPath="$PROJECT_DIR$/subscriptions/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,10 +45,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="167" column="13" selection-start="5858" selection-end="5858" vertical-scroll-proportion="5.3238254">
+            <state line="164" column="65" selection-start="5756" selection-end="5756" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#35#44#0" expanded="true" />
               </folding>
@@ -75,10 +76,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subscription_detail.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="subscription_detail.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/subscriptions/templates/subscriptions/subscription_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="20" selection-start="291" selection-end="291" vertical-scroll-proportion="-6.3333335">
+            <state line="9" column="20" selection-start="291" selection-end="291" vertical-scroll-proportion="0.30052724">
               <folding />
             </state>
           </provider>
@@ -109,11 +110,11 @@
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/subscriptions/templates/subscriptions/subscription_form.html" />
         <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/subscriptions/templates/subscriptions/subscription_detail.html" />
         <option value="$PROJECT_DIR$/subscriptions/views.py" />
         <option value="$PROJECT_DIR$/subscriptions/tests.py" />
         <option value="$PROJECT_DIR$/subscriptions/models.py" />
+        <option value="$PROJECT_DIR$/settings.py" />
       </list>
     </option>
   </component>
@@ -642,34 +643,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/subscriptions/templates/subscriptions/subscription_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="20" selection-start="291" selection-end="291" vertical-scroll-proportion="-6.3333335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/subscriptions/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#16#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/subscriptions/templates/subscriptions/subscription_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="35" selection-start="82" selection-end="82" vertical-scroll-proportion="-2.1111112">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/subscriptions/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="38" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#16#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -683,10 +661,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="13" selection-start="5858" selection-end="5858" vertical-scroll-proportion="5.3238254">
+        <state line="164" column="65" selection-start="5756" selection-end="5756" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#35#44#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/subscriptions/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="38" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#16#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/subscriptions/templates/subscriptions/subscription_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="35" selection-start="82" selection-end="82" vertical-scroll-proportion="-2.1111112">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/subscriptions/templates/subscriptions/subscription_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="20" selection-start="291" selection-end="291" vertical-scroll-proportion="0.30052724">
+          <folding />
         </state>
       </provider>
     </entry>

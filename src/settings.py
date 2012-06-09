@@ -160,7 +160,7 @@ LOGGING = {
     }
 }
 
-DEFAULT_FROM_EMAIL = 'marcusvinicius.faria@gmail.com'
+DEFAULT_FROM_EMAIL = 'contato@viniciusfaria-eventex.com.br'
 if 'True' == os.environ.get('SEND_EMAIL', 'False'):
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.gmail.com'
