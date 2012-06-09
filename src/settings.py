@@ -1,4 +1,5 @@
 # Django settings for src project.
+import os
 
 from unipath import Path
 PROJECT_DIR = Path(__file__).parent
@@ -127,6 +128,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'src.core',
+    'src.subscriptions',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -157,3 +159,15 @@ LOGGING = {
         },
     }
 }
+
+DEFAULT_FROM_EMAIL = 'marcusvinicius.faria@gmail.com'
+if 'True' == os.environ.get('SEND_EMAIL', 'False'):
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

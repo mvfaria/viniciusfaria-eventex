@@ -4,12 +4,12 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
+
 urlpatterns = patterns('src',
     url(r'^$', 'core.views.homepage', name='homepage'),
+    url(r'^inscricao/', include('src.subscriptions.urls', namespace='subscriptions')),
 
-    # Examples:
-    # url(r'^$', 'src.views.home', name='home'),
-    # url(r'^src/', include('src.foo.urls')),
+
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

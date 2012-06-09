@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-­‐//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <title>EventeX</title>
+    <link type="text/css" href="{{ STATIC_URL }}css/styles.css" rel="stylesheet" media="screen" />
+</head>
+<body>
+    <div id="page">
+        <div id="header">
+            <img src="{{ STATIC_URL }}img/logo.jpg" alt="EventeX" />
+        </div>
+        <hr>
+        <div id="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
+</html>
+
