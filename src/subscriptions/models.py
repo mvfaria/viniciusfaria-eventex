@@ -14,9 +14,8 @@ class Subscription(models.Model):
         return self.name
 
 
-
-class Meta:
-    ordering = ["created_at"]
-    verbose_name = u"Inscrição"
-    verbose_name_plural = u"Inscrições"
+    class Meta:
+        ordering = ["created_at"]
+        verbose_name = u"Inscrição"
+        verbose_name_plural = u"Inscrições"
 
