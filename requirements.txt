@@ -2,3 +2,4 @@ django==1.4
 Unipath==0.2.1
 psycopg2
 South==0.7.5
+mock==0.8.0

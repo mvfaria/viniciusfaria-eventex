@@ -1,11 +1,13 @@
 # coding: utf-8
-from this import s
+from django.contrib.auth.models import User
 from django.core import mail
 from django.db.utils import IntegrityError
 from django.test import TestCase
 from django.core.urlresolvers import reverse
+from mock import Mock
 from .models import Subscription
 from .forms import SubscriptionForm
+from .admin import SubscriptionAdmin, admin
 
 
 class SubscriptionUrlTest(TestCase):
@@ -44,8 +46,8 @@ class SubscribeViewTest(TestCase):
     def test_html(self):
         """O html deve conter os campos do formulário"""
         self.assertContains(self.resp, '<form')
-        self.assertContains(self.resp, '<input', 6)
-        self.assertContains(self.resp, 'type="text"', 4)
+        self.assertContains(self.resp, '<input', 7)
+        self.assertContains(self.resp, 'type="text"', 5)
         self.assertContains(self.resp, 'type="submit"')
 
 
@@ -83,6 +85,8 @@ class SubscriptionModelUniqueTest(TestCase):
         # Verifica se ocorre o erro de integridade ao persistir.
         self.assertRaises(IntegrityError, s.save)
 
+
+    '''
     def test_email_must_be_unique(self):
         """Email deve ser único."""
         # Instancia a inscrição com Email existente
@@ -94,6 +98,7 @@ class SubscriptionModelUniqueTest(TestCase):
         )
         # Verifica se ocorre o erro de integridade ao persistir.
         self.assertRaises(IntegrityError, s.save)
+    '''
 
 
 class SubscribeViewPostTest(TestCase):
@@ -121,8 +126,7 @@ class SubscribeViewPostTest(TestCase):
 
 class SubscribeViewInvalidPostTest(TestCase):
     def setUp(self):
-        data = dict(name='Henrique Bastos', cpf='000000000001',
-        email='henrique@bastos.net', phone='21-96186180')
+        data = dict(name='Henrique Bastos', cpf='000000000001', email='henrique@bastos.net', phone='21-96186180')
         self.resp = self.client.post(reverse('subscriptions:subscribe'), data)
 
     def test_show_page(self):
@@ -172,3 +176,76 @@ class SuccessViewNotFound(TestCase):
         response = self.client.get(reverse('subscriptions:success', args=[0]))
         self.assertEqual(404, response.status_code)
 
+
+class CustomActionTest(TestCase):
+    def setUp(self):
+        Subscription.objects.create(
+            name='Henrique Bastos',
+            cpf='012345678901',
+            email='henrique@bastos.net',
+            phone='21-96186180'
+        )
+
+        self.modeladmin = SubscriptionAdmin(Subscription, admin.site)
+        # action!
+        self.modeladmin.mark_as_paid(Mock(), Subscription.objects.all())
+
+    def test_update(self):
+        """Dados devem ser atualizados como pago de acordo com o Queryset."""
+        self.assertEqual(1, Subscription.objects.filter(paid=True).count())
+
+
+class ExportSubscriptionViewTest(TestCase):
+    def setUp(self):
+        User.objects.create_superuser('admin', 'admin@admin.com', 'admin')
+        assert self.client.login(username='admin', password='admin')
+        self.resp = self.client.get(reverse('admin:export_subscriptions'))
+
+    def test_get(self):
+        u"""Sucesso ao acessar url de download do arquivo csv."""
+        self.assertEqual(200, self.resp.status_code)
+
+    def test_content_type(self):
+        u"""Content type deve ser text/csv."""
+        self.assertEqual('text/csv', self.resp['Content-Type'])
+
+    def test_attachment(self):
+        u"""Header indicando ao browser que a resposta é um arquivo a ser salvo."""
+        self.assertTrue('attachment;' in self.resp['Content-Disposition'])
+
+
+class ExportSubscriptionsNotFound(TestCase):
+    def test_404(self):
+        u"""Login é exigido para download do csv"""
+        # Quando o usuário não está autenticado
+        # o Admin response 200 e renderiza o html de login.
+        response = self.client.get(reverse('admin:export_subscriptions'))
+        self.assertTemplateUsed(response, 'admin/login.html')
+
+class SubscriptionFormTest(TestCase):
+    def test_cpf_has_only_digits(self):
+        u"""CPF deve ter apenas dígitos."""
+        form = self.make_and_validate_form(cpf='ABCDE000000')
+        self.assertDictEqual(form.errors,
+                {'cpf': [u'O CPF deve conter apenas números']})
+
+    def test_cpf_has_11_digits(self):
+        u"""CPF deve ter exatamente 11 dígitos."""
+        form = self.make_and_validate_form(cpf='000000000012')
+        self.assertDictEqual(form.errors,
+                {'cpf': [u'O CPF deve ter 11 dígitos']})
+
+
+    def test_must_inform_email_or_phone(self):
+        u"""Email e Phone são opcionais, mas ao menos 1 precisa ser informado."""
+        form = self.make_and_validate_form(email='', phone='')
+        self.assertDictEqual(form.errors,
+            {'__all__': [u'Informe seu e-mail ou telefone.']})
+
+    def make_and_validate_form(self, **kwargs):
+        data = dict(name='Henrique Bastos', email='henrique@bastos.net',
+            cpf='00000000000', phone='21-96186180')
+        data.update(kwargs)
+        form = SubscriptionForm(data)
+        form.is_valid()
+        return form
