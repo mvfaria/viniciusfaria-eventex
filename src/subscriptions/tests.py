@@ -75,7 +75,7 @@ class SubscriptionModelUniqueTest(TestCase):
 
     def test_cpf_must_be_unique(self):
         """CPF deve ser único."""
-        # Instancia a inscrição com CPF existente
+        # Instância a inscrição com CPF existente
         s = Subscription(
             name='Henrique Bastos',
             cpf='012345678901',
